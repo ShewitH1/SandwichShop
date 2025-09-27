@@ -12,11 +12,16 @@ public class Main {
         double discount_regular = 0.10;
         double discount_large = 0.20;
         double discount;
-        double discount_price = 0;
-        double regular_price = 0;
+        double discount_price, regular_price = 0;
+        double loaded_regular_price = 1.00;
+        double loaded_large_price = 1.75;
+
 
         System.out.println("What sandwich size do you want - Large (2) or Regular(1)?");
         String sandwich_size = scanner.nextLine();
+
+        System.out.println("Would you like your sandwich loaded (Yes/No)");
+        String choice = scanner.nextLine();
 
         System.out.println("What is your age?");
         int user_age = scanner.nextInt();
@@ -39,16 +44,24 @@ public class Main {
             discount = large_base_price_2 * discount_large;
             discount_price = large_base_price_2 - discount;
             System.out.println("Here is your discounted cost: " + discount_price);
-        }
-        else {
-            if (sandwich_size.equals("1")){
+        } else if (choice.equalsIgnoreCase("Yes") && sandwich_size.equals("1")) {
+            regular_price = regular_base_price_1 + loaded_regular_price;
+            System.out.println("Here is your loaded sandwich price:" + regular_price);
+
+        } else if (choice.equalsIgnoreCase("Yes") && sandwich_size.equals("2")) {
+            regular_price = regular_base_price_1 + loaded_large_price;
+            System.out.println("Here is your loaded sandwich price:" + regular_price);
+
+
+        } else if (choice.equalsIgnoreCase("No")) {
+            if (sandwich_size.equals("1")) {
                 regular_price = regular_base_price_1;
 
-            }
-            else if (sandwich_size.equals("2")){
+            } else if (sandwich_size.equals("2")) {
                 regular_price = large_base_price_2;
             }
             System.out.println("Here is your regular cost: " + regular_price);
         }
+
     }
 }
